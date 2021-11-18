@@ -1,5 +1,5 @@
-<h1>Pomodoro</h1>
- A pomodoro is a type of timer used to increase productivity.
+<h1>Pomodoro Timer</h1>
+This timer uses the Pomodoro Technique, a time management method that breaks work down into intervals which are separated by small breaks.
  
 Framework: React.js
 

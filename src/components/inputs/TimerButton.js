@@ -1,6 +1,6 @@
-const TimerButton = ({ handleChange, label, children, shape }) => (
+const TimerButton = ({ handleChange, label, children  }) => (
     <button onClick={handleChange} 
-    className={shape === "square" ? `btn-long ` : null + `timer-btn`}>
+    className="timer-btn">
         <div className="btn-base">
             {children}
             {label && <p>{label}</p> }

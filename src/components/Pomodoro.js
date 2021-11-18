@@ -43,8 +43,6 @@ export default function Pomodoro() {
             clearInterval(timerInterval);
             console.log(time);
         }
-            
-            // setTime(prev => time > 0 && prev);
     }
     
     const resetTimer = () => {
@@ -70,14 +68,14 @@ export default function Pomodoro() {
     const TimerRunningControls = () => (
         <div className="timer-controls">
             <TimerButton handleChange={stopTimer} label="Stop"><FaStop /></TimerButton>
-            <TimerButton handleChange={pauseTimer} label="Pause">{running ? <FaPause /> : <FaPlay />}</TimerButton>
+            <TimerButton handleChange={pauseTimer} label="Pause">{running ? ( <FaPause /> ) : ( <FaPlay /> )}</TimerButton>
             <ResetButton />
         </div>
     );
 
     const InitialControls = () => (
         <div className="timer-controls">
-            <TimerButton shape="circle" handleChange={startTimer}
+            <TimerButton handleChange={startTimer}
              label="Start"><FaPlay /></TimerButton> 
             {sessionType === sessionTimes[1].type ? (
                 <ResetButton />
