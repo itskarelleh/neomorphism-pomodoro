@@ -123,6 +123,8 @@ h6 {
     display: flex;
     flex-flow: wrap;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     svg {
       width: 20px;
       height: auto;

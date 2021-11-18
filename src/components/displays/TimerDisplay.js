@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TimerButton from '../inputs/TimerButton';
 import { FaMinus, FaPlus } from "react-icons/fa";
 
@@ -26,24 +26,39 @@ export default function TimerDisplay({ time, setTime, sessionType, isRunning }) 
     )
 
     const increase = () => {
-        if(time === 60) {
+        if(sessionType !== "Break") {
+            if(time === 60) {
+                return time;
+            } else {
+                setTime(time += 5);
+            }
+        } else {
+            if(time === 15) {
+                return time;
+            } else {
+                setTime(time += 5);
+            }
+        }
+    }
+
+    const decrease = () => {
+        if(sessionType !== "Break") {
+            if(time === 15) {
+                return time;
+            } else {
+                setTime(time -= 5);
+            }
+        } 
+        
+        if(time === 5) {
             return time;
         } else {
             setTime(time += 5);
         }
     }
 
-    const decrease = () => {
-        if(time === 15) {
-            return time;
-        } else {
-            setTime(time -= 5);
-        }
-    }
-
     const InitialDisplay = () => (
         <div className="timer-select inline-flex">
-            {/* <div role="button" onClick={decrease}><FaMinus /></div> */}
             <TimerButton handleChange={decrease}><FaMinus /></TimerButton> 
             <h2 className="timer-text">{time}</h2>
             <TimerButton handleChange={increase}><FaPlus /></TimerButton>
@@ -53,12 +68,10 @@ export default function TimerDisplay({ time, setTime, sessionType, isRunning }) 
     return (
         <div className="timer-display">
             <div className="timer-container">
-                {/* <div style={{ height: "100%", borderRadius: "50%", width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}> */}
-                    <div className="text-wrap">
-                        <h6>{isRunning ? sessionType : <>Select minutes</> }</h6>
-                        {isRunning ? <RunningDisplay /> : <InitialDisplay />}
-                    </div>
-                {/* </div> */}
+                <div className="text-wrap">
+                    <h6>{!sessionType ? <>Select minutes</> : sessionType }</h6>
+                    {!sessionType ? <InitialDisplay /> : <RunningDisplay />}
+                </div>
             </div>
         </div>
     )

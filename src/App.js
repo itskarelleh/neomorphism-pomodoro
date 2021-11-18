@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Pomodoro from './components/Pomodoro';
 import './App.scss';
 
