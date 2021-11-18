@@ -1,11 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Timer from './components/timer';
+import React, { useState } from 'react';
+import Pomodoro from './components/Pomodoro';
+import './App.scss';
 
 function App() {
+
   return (
     <div className="App">
+      <Pomodoro />
     </div>
   );
 }
