@@ -7,8 +7,8 @@ const doubleDigitFormatting = (num) => {
     return num > 9 ? num : `0${num}`;
 }
 
-//gets the total minutes and seconds remaining as the timer is counting
-//down
+//gets the total minutes and seconds remaining 
+//as the timer is counting down
 const formatTime = (time) => {
     
     const minutes = doubleDigitFormatting(Math.floor(time / 60));
@@ -17,13 +17,9 @@ const formatTime = (time) => {
     return `${minutes}:${seconds}`;
 }
                 
-export default function TimerDisplay({ time, setTime, sessionType, isRunning }) {
+export default function TimerDisplay({ time, setTime, sessionType }) {
 
-    const RunningDisplay = () => (
-        <div className="timer-select inline-flex">
-            <h2 className="timer-text">{formatTime(time)}</h2>
-        </div>
-    )
+
 
     const increase = () => {
         if(sessionType !== "Break") {
@@ -48,14 +44,20 @@ export default function TimerDisplay({ time, setTime, sessionType, isRunning }) 
             } else {
                 setTime(time -= 5);
             }
-        } 
-        
-        if(time === 5) {
-            return time;
         } else {
-            setTime(time += 5);
-        }
+            if(time === 5) {
+                return time;
+            } else {
+                setTime(time -= 5);
+            }
+        } 
     }
+
+    const RunningDisplay = () => (
+        <div className="timer-select inline-flex">
+            <h2 className="timer-text">{formatTime(time)}</h2>
+        </div>
+    )
 
     const InitialDisplay = () => (
         <div className="timer-select inline-flex">

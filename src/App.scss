@@ -4,13 +4,29 @@ $dark: #252525;
 $text: #a06f64;
 $light-bg: #FEECE6;
 $dark-bg: linear-gradient(180deg, #221915 0%, #3E302A 46.34%, #1A0B05 125.28%);
+/**neomorphism-shadows & highlights**/
+//raised
+$highlight-dramatic: -4.083333492279053px -4.083333492279053px 12.25px 0px #FFFFFF;
+$shadow-dramatic-1: 6.125px 6.125px 12.25px 0px #AEAEC066;
+$shadow-dramatic-2: 0px 0px 0px 1px #FFFFFF33 inset;
+
 $highlight: -1.6666666269302368px -1.6666666269302368px 5px 0px #FFFFFF;
 $shadow-1: 2.5px 2.5px 5px 0px #AEAEC066;
 $shadow-2: 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset;
+$highlight-soft: -1.6666666269302368px -1.6666666269302368px 5px 0px #FFFFFF;
+$soft-shadow-1: 2.5px 2.5px 5px 0px #AEAEC066;
+$soft-shadow-2: 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset;
+//sunken
+$sunken-shadow: 6.125px 6.125px 4.083333492279053px 0px #AEAEC033 inset;
+$sunken-highlight: -4.083333492279053px -4.083333492279053px 4.083333492279053px 0px #FFFFFFB2 inset;
+
+
+
 //dimension
 $rounded: 50%;
 $timer-circle: 75vw;
-$btn-size: 25vw;
+$btn-size: 15vw;
+$btn-size-small: 8vw;
 $phone: 320px;
 $tablet: 768px;
 $laptop: 1200px;
@@ -47,8 +63,19 @@ h6 {
   @extend .flex-center;
 }
 
+.raised-dramatic {
+  box-shadow: $highlight-dramatic, $shadow-dramatic-1;
+}
 .raised {
   box-shadow: $highlight, $shadow-1;
+}
+
+.raised-soft {
+  box-shadow: $highlight-soft, $soft-shadow-1;
+}
+
+.sunken-dramatic {
+  box-shadow: $sunken-highlight, $sunken-shadow;
 }
 
 .timer {
@@ -70,7 +97,7 @@ h6 {
 }
 
 .timer-container {
-  @extend .raised;
+  @extend .raised-dramatic;
   border-radius: $rounded;
   height: $timer-circle;
   width: $timer-circle;
@@ -89,6 +116,7 @@ h6 {
   color: $primary;
   display: inline;
   margin: 0;
+  text-shadow: $shadow-1;
 }
 
 .second {
@@ -110,8 +138,8 @@ h6 {
 }
 
 .timer-btn {
-  min-height: 15vw;
-  min-width: 15vw;
+  height: $btn-size;
+  width: $btn-size;
   border-radius: $rounded;
   background: none;
   border: none;
@@ -129,6 +157,9 @@ h6 {
       width: 20px;
       height: auto;
     }
+  }
+  &:active {
+    @extend .sunken-dramatic;
   }
 }
 
@@ -149,6 +180,7 @@ h6 {
   border-radius: 50%;
   width: 100%;
   height: 100%; 
+  
   p{ 
     margin: 0px;    
   }
@@ -156,4 +188,16 @@ h6 {
 
 .timer-select {
   height: 75%;
+}
+
+@media (min-width: $tablet) and (max-width: $desktop) {
+  .timer-container {
+    height: calc($timer-circle/2);
+    width: calc($timer-circle/2);
+  }
+
+  .timer-btn {
+    width: $btn-size-small;
+    height: $btn-size-small;
+  }
 }
