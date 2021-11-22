@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TimerDisplay from './displays/TimerDisplay';
 import TimerButton from './inputs/TimerButton';
-import Sounds from './inputs/Sounds';
 import { FaUndoAlt, FaPause, FaPlay, FaStop } from "react-icons/fa";
 
 export default function Pomodoro() {
@@ -41,17 +40,9 @@ export default function Pomodoro() {
     }
 
     const pauseTimer = () => {
-        // if(!timerInterval){
-            // setTimerInterval(setInterval(tick, 1000));
-            clearInterval(timerInterval);
-            setRunning(false);
-            setTime(prev => time > 0 ? (prev) : sessionTimes[0].default);
-            // console.log(time);
-            // startTimer();
-        // } else {
-        //     clearInterval(timerInterval);
-        //     console.log(time);
-        // }
+        clearInterval(timerInterval);
+        setRunning(false);
+        setTime(prev => time > 0 ? (prev) : sessionTimes[0].default);
     }
 
     const togglePausePlay = () => {

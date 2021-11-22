@@ -9,7 +9,6 @@ $dark-bg: linear-gradient(180deg, #221915 0%, #3E302A 46.34%, #1A0B05 125.28%);
 $highlight-dramatic: -4.083333492279053px -4.083333492279053px 12.25px 0px #FFFFFF;
 $shadow-dramatic-1: 6.125px 6.125px 12.25px 0px #AEAEC066;
 $shadow-dramatic-2: 0px 0px 0px 1px #FFFFFF33 inset;
-
 $highlight: -1.6666666269302368px -1.6666666269302368px 5px 0px #FFFFFF;
 $shadow-1: 2.5px 2.5px 5px 0px #AEAEC066;
 $shadow-2: 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset;
@@ -19,14 +18,11 @@ $soft-shadow-2: 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset;
 //sunken
 $sunken-shadow: 6.125px 6.125px 4.083333492279053px 0px #AEAEC033 inset;
 $sunken-highlight: -4.083333492279053px -4.083333492279053px 4.083333492279053px 0px #FFFFFFB2 inset;
-
-
-
 //dimension
 $rounded: 50%;
 $timer-circle: 75vw;
 $btn-size: 15vw;
-$btn-size-small: 8vw;
+$btn-size-small: 6vw;
 $phone: 320px;
 $tablet: 768px;
 $laptop: 1200px;
@@ -192,8 +188,8 @@ h6 {
 
 @media (min-width: $tablet) and (max-width: $desktop) {
   .timer-container {
-    height: calc($timer-circle/2);
-    width: calc($timer-circle/2);
+    height: 25vw;
+    width: 25vw;
   }
 
   .timer-btn {
