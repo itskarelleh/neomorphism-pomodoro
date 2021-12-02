@@ -4,7 +4,6 @@
             "root": ["./"],
             "alias": {
                 "components": "./src/components",
-                "hooks": "./src/hooks",
                 "assets": "./src/assets",
                 "firebase": "./src/firebase"
             }

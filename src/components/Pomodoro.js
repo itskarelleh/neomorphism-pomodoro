@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import TimerDisplay from './displays/TimerDisplay';
-import TimerButton from './inputs/TimerButton';
 import AudioButton from './inputs/AudioButton';
 import { InitialControls, TimerRunningControls } from './inputs/ButtonGroups';
 
@@ -15,10 +14,16 @@ export default function Pomodoro() {
     const [ running, setRunning ] = useState(false);
     const [ time, setTime ] = useState(sessionTimes[0].default);
     const [ sessionType, setSessionType ] = useState(null);
-
+    const [ sound, setSound ] = useState(null);
+    
+    var audio = new Audio(sound);
+    
     const startTimer = () => {
         setRunning(true);
         setTimerInterval(setInterval(tick, 1000));
+        if(sound !== null) {
+            audio.play();
+        }
         if(!sessionType) { 
             setTime(prev => time > 0 ? (prev * 60) : sessionTimes[0].default);
         } else {
@@ -78,20 +83,17 @@ export default function Pomodoro() {
         setTime(previousValue => previousValue - 1);
     }
 
-
-
     useEffect(() => {
-        
-        // if(time > 0 && running) {
-        //     audio.play();
-        // } 
+
         if(time === 0) {
             stopTimer();
+            // audio.pause;
         }
-    });
+
+    }, [sound]);
 
     return (
-        <div className="container">
+        <>
            <div className="timer">
            <TimerDisplay time={time} setTime={setTime}
             sessionType={sessionType}
@@ -99,15 +101,14 @@ export default function Pomodoro() {
            </div>
            <div className="controls">
                {running ? <TimerRunningControls stop={stopTimer} 
-               play={startTimer} reset={resetTimer} running={running}
+               play={togglePausePlay} reset={resetTimer} running={running}
                 /> : 
                 <InitialControls sessionType={sessionType} 
                 start={startTimer} reset={resetTimer} />}
                <div className="settings">
-                    <AudioButton />
+                    <AudioButton setSound={setSound} />
                 </div>
            </div>
-           
-        </div>
+        </>   
     )
 }

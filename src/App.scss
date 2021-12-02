@@ -1,8 +1,8 @@
 //palette
-$primary: #E14726;
+$primary: #FEECE6;
+$primary-dark: #eacec8;
 $dark: #252525;
 $text: #a06f64;
-$light-bg: #FEECE6;
 $dark-bg: linear-gradient(180deg, #221915 0%, #3E302A 46.34%, #1A0B05 125.28%);
 /**neomorphism-shadows & highlights**/
 //raised
@@ -24,7 +24,6 @@ $timer-circle: 75vw;
 $btn-size: 15vw;
 $btn-size-small: 6vw;
 $watch: 218px;
-
 $phone: 320px;
 $small-tablet: 600px;
 $tablet: 768px;
@@ -39,7 +38,7 @@ h6 {
 }
 
 .App {
-  background: $light-bg;
+  background: $primary;
   height: 100vh;
 }
 
@@ -49,6 +48,20 @@ h6 {
   margin: 0 auto;
   align-items: center;
   justify-content: center;
+}
+
+.flex-end {
+  display: flex; 
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .inline-flex {
@@ -66,8 +79,13 @@ h6 {
 .raised-dramatic {
   box-shadow: $highlight-dramatic, $shadow-dramatic-1;
 }
+
 .raised {
   box-shadow: $highlight, $shadow-1;
+}
+
+.raised-text {
+  text-shadow: 1px 1px 1px #aeaec0;
 }
 
 .raised-soft {
@@ -78,13 +96,19 @@ h6 {
   box-shadow: $sunken-highlight, $sunken-shadow;
 }
 
+.raised-icon {
+    stroke: none;
+    fill: #feece6;
+    filter: drop-shadow(1px 1px 1px #aeaec0);
+}
+
 .timer {
   @extend .flex-center;
   height: 70%;
+  width: 100%;
 }
 
 .timer-display{ 
-  width: 100%;
   font-size: 3rem;
 }
 
@@ -113,10 +137,10 @@ h6 {
 }
 
 .timer-text {
-  color: $primary;
+  color: $text;
   display: inline;
   margin: 0;
-  text-shadow: $shadow-1;
+  @extend .raised-text
 }
 
 .second {
@@ -188,6 +212,20 @@ h6 {
   }
 }
 
+.btn-small {
+  @extend .raised-soft;
+  width: 6vw;
+  height: 6vw;
+  font-size: 0.8rem;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: $text;
+  :hover {
+    cursor: pointer;
+  }
+}
+
 .timer-select {
   height: 75%;
 }
@@ -211,10 +249,31 @@ h6 {
   }
 }
 
-// @media 
-// (max-device-width: 218px)
-// and (max-device-height: 281px) { 
-// }
+#menu {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  position: absolute;
+  left: 0;
+  background: $primary;
+}
+
+#menu-head {
+  margin-left: 25px;
+}
+
+#brand-title {
+    color: $primary;
+    margin-left: 25px;
+    font-size: 2rem;
+    @extend .raised-text;
+}
+
+.icon {
+  svg {
+    @extend .raised-icon;
+  }
+}
 
 @media (min-width: $small-tablet) {
   .timer-container {
@@ -228,34 +287,34 @@ h6 {
   }
 }
 
-@media (min-width: $tablet) {
+@media (min-width: $tablet) and (max-width: $laptop) {
   .timer-container {
-    height: 75vw;
-    width: 75vw;
+    height: 45vw;
+    width: 45vw;
   }
 
   .timer-btn {
-    width: $btn-size;
-    height: $btn-size;
+    width: 8vw;
+    height: 8vw;
   }
 }
 
 @media screen and (min-width: $laptop) and (max-width: $desktop){ 
   .timer-container{
-    height: 35vw;
-    width: 35vw;
+    height: 25vw;
+    width: 25vw;
   }
 
   .timer-btn {
-    width: $btn-size-small;
-    height: $btn-size-small;
+    width: 5vw;
+    height: 5vw;
   }
 }
 
 @media screen and (min-width: $desktop) { 
   .timer-container{
-    height: 40vw;
-    width: 40vw;
+    height: 20vw;
+    width: 20vw;
   }
 
   .timer-btn {
