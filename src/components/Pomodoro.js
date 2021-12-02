@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import TimerDisplay from './displays/TimerDisplay';
 import TimerButton from './inputs/TimerButton';
-import { FaUndoAlt, FaPause, FaPlay, FaStop } from "react-icons/fa";
+import AudioButton from './inputs/AudioButton';
+import { InitialControls, TimerRunningControls } from './inputs/ButtonGroups';
+
+const sessionTimes = [
+    { type: "Running", min: 15, default:25, max: 60 },
+    { type: "Break", min: 5, default: 5, max: 15 }
+];
 
 export default function Pomodoro() {
-    
-    const sessionTimes = [
-        { type: "Running", min: 15, default:25, max: 60 },
-        { type: "Break", min: 5, default: 5, max: 15 }
-    ];
-    
+
     const [ timerInterval, setTimerInterval ] = useState(null);
     const [ running, setRunning ] = useState(false);
     const [ time, setTime ] = useState(sessionTimes[0].default);
@@ -61,7 +62,7 @@ export default function Pomodoro() {
     }
 
     const tick = () => {
-        if(time <= 1) {
+        if(time <= 0) {
             stopTimer();
             setRunning(false);
             setTime(5);
@@ -77,30 +78,13 @@ export default function Pomodoro() {
         setTime(previousValue => previousValue - 1);
     }
 
-    const ResetButton = () => ( 
-        <TimerButton handleChange={resetTimer} label="Reset">
-            <FaUndoAlt />
-        </TimerButton> );
 
-    const TimerRunningControls = () => (
-        <div className="timer-controls">
-            <TimerButton handleChange={stopTimer} label="Stop"><FaStop /></TimerButton>
-            <TimerButton handleChange={togglePausePlay} label="Pause">{running ? ( <FaPause /> ) : ( <FaPlay /> )}</TimerButton>
-            <ResetButton />
-        </div>
-    );
-
-    const InitialControls = () => (
-        <div className="timer-controls">
-            <TimerButton handleChange={startTimer}
-             label="Start"><FaPlay /></TimerButton> 
-            {sessionType === sessionTimes[1].type ? (
-                <ResetButton />
-            ): null}
-        </div>
-    )
 
     useEffect(() => {
+        
+        // if(time > 0 && running) {
+        //     audio.play();
+        // } 
         if(time === 0) {
             stopTimer();
         }
@@ -114,11 +98,16 @@ export default function Pomodoro() {
             isRunning={running} />
            </div>
            <div className="controls">
-               {running ? <TimerRunningControls /> : <InitialControls />}
+               {running ? <TimerRunningControls stop={stopTimer} 
+               play={startTimer} reset={resetTimer} running={running}
+                /> : 
+                <InitialControls sessionType={sessionType} 
+                start={startTimer} reset={resetTimer} />}
+               <div className="settings">
+                    <AudioButton />
+                </div>
            </div>
-           <div className="settings">
-               {/* <Sounds /> */}
-           </div>
+           
         </div>
     )
 }

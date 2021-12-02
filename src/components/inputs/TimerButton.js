@@ -1,11 +1,19 @@
-const TimerButton = ({ handleChange, label, children  }) => (
+import PropTypes from 'prop-types';
+
+const TimerButton = ({ handleChange, label, icon, children, isLong }) => (
     <button onClick={handleChange} 
-    className="timer-btn">
+    className={isLong ? "btn-long" : "timer-btn"}>
         <div className="btn-base">
-            {children}
+            {icon && <p>{icon}</p>}
             {label && <p>{label}</p> }
+            {children}
+
         </div>
     </button>
 )
+
+TimerButton.propTypes = {
+    isLong: PropTypes.bool
+}
 
 export default TimerButton;

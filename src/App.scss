@@ -23,10 +23,13 @@ $rounded: 50%;
 $timer-circle: 75vw;
 $btn-size: 15vw;
 $btn-size-small: 6vw;
+$watch: 218px;
+
 $phone: 320px;
+$small-tablet: 600px;
 $tablet: 768px;
 $laptop: 1200px;
-$desktop: 1920px;
+$desktop: 1600px;
 
 h6 {
   margin: 0;
@@ -40,7 +43,7 @@ h6 {
   height: 100vh;
 }
 
-.flex-center {
+.flex-center{
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -57,6 +60,7 @@ h6 {
   width: 75%;
   height: 100%;
   @extend .flex-center;
+  justify-content: flex-start;
 }
 
 .raised-dramatic {
@@ -160,12 +164,14 @@ h6 {
 }
 
 .btn-long {
+  @extend .timer-btn;
   height: 15vw;
-  width: 25vw;
+  min-width: 100%;
   background: none;
-  @extend .raised;
-  div {
-    @extend .btn-inner;
+  border-radius: 50px;
+  div{
+    display: flex;
+    flex-direction: row;
   }
 }
 
@@ -186,10 +192,70 @@ h6 {
   height: 75%;
 }
 
-@media (min-width: $tablet) and (max-width: $desktop) {
+.sound-options {
+  list-style-type: none;
+  display: inline;
+  li{
+    display: inline-flex;
+    flex-direction: column;
+    margin: 0 10px;
+    align-items: center;
+    color: $text;
+    svg {
+      filter: drop-shadow(1.5px 3px 0px #AEAEC066);
+      // @extend .raised-soft;
+    }
+    :hover {
+      cursor: pointer;
+    }
+  }
+}
+
+// @media 
+// (max-device-width: 218px)
+// and (max-device-height: 281px) { 
+// }
+
+@media (min-width: $small-tablet) {
   .timer-container {
-    height: 25vw;
-    width: 25vw;
+    height: 50vw;
+    width: 50vw;
+  }
+
+  .timer-btn {
+    height: 12vw;
+    width:12vw
+  }
+}
+
+@media (min-width: $tablet) {
+  .timer-container {
+    height: 75vw;
+    width: 75vw;
+  }
+
+  .timer-btn {
+    width: $btn-size;
+    height: $btn-size;
+  }
+}
+
+@media screen and (min-width: $laptop) and (max-width: $desktop){ 
+  .timer-container{
+    height: 35vw;
+    width: 35vw;
+  }
+
+  .timer-btn {
+    width: $btn-size-small;
+    height: $btn-size-small;
+  }
+}
+
+@media screen and (min-width: $desktop) { 
+  .timer-container{
+    height: 40vw;
+    width: 40vw;
   }
 
   .timer-btn {

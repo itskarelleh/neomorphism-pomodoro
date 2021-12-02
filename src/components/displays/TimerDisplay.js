@@ -19,8 +19,6 @@ const formatTime = (time) => {
                 
 export default function TimerDisplay({ time, setTime, sessionType }) {
 
-
-
     const increase = () => {
         if(sessionType !== "Break") {
             if(time === 60) {
