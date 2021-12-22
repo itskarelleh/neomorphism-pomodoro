@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TimerDisplay from './displays/TimerDisplay';
 import AudioButton from './inputs/AudioButton';
 import { InitialControls, TimerRunningControls } from './inputs/ButtonGroups';
-
-const sessionTimes = [
-    { type: "Running", min: 15, default:25, max: 60 },
-    { type: "Break", min: 5, default: 5, max: 15 }
-];
+import { sessionTimes } from '../enums';
 
 export default function Pomodoro() {
 
@@ -14,16 +10,16 @@ export default function Pomodoro() {
     const [ running, setRunning ] = useState(false);
     const [ time, setTime ] = useState(sessionTimes[0].default);
     const [ sessionType, setSessionType ] = useState(null);
-    const [ sound, setSound ] = useState(null);
-    
+    const [ sound, setSound ] = useState('');
+    // const [ audio ] = useState(new Audio())
     var audio = new Audio(sound);
     
+    audio.load();
+
     const startTimer = () => {
         setRunning(true);
         setTimerInterval(setInterval(tick, 1000));
-        if(sound !== null) {
-            audio.play();
-        }
+        audio.play();
         if(!sessionType) { 
             setTime(prev => time > 0 ? (prev * 60) : sessionTimes[0].default);
         } else {
@@ -32,10 +28,21 @@ export default function Pomodoro() {
         setSessionType(prev => !prev ? sessionTimes[0].type : prev);
     }
 
+    const stopSound = () => {
+        setSound('');
+        audio.src = '';
+        audio.pause();
+        audio.currentTime = 0;
+    }
+
     const stopTimer = () => {
         clearInterval(timerInterval);
         setTimerInterval(null);
         setRunning(false);
+        audio.src = '';
+        audio.currentTime = 0;
+        setSound('');
+
         if(time === 0 && sessionType === sessionTimes[0].type) {
             setTime(5);
             setSessionType(sessionTimes[1].type);
@@ -46,6 +53,7 @@ export default function Pomodoro() {
     }
 
     const pauseTimer = () => {
+        audio.pause();
         clearInterval(timerInterval);
         setRunning(false);
         setTime(prev => time > 0 ? (prev) : sessionTimes[0].default);
@@ -83,30 +91,34 @@ export default function Pomodoro() {
         setTime(previousValue => previousValue - 1);
     }
 
-    useEffect(() => {
+    const toggleSound = () => {
+    }
 
+    useEffect(() => {
+        if(audio.currentTime === 0 && time > 0) {
+            audio.loop = true;
+        }
+ 
         if(time === 0) {
             stopTimer();
-            // audio.pause;
         }
-
-    }, [sound]);
+    });
 
     return (
         <>
-           <div className="timer">
+           <div id="timer">
            <TimerDisplay time={time} setTime={setTime}
             sessionType={sessionType}
             isRunning={running} />
            </div>
-           <div className="controls">
+           <div id="controls">
                {running ? <TimerRunningControls stop={stopTimer} 
                play={togglePausePlay} reset={resetTimer} running={running}
                 /> : 
                 <InitialControls sessionType={sessionType} 
                 start={startTimer} reset={resetTimer} />}
                <div className="settings">
-                    <AudioButton setSound={setSound} />
+                    <AudioButton sound={sound} setSound={setSound} />
                 </div>
            </div>
         </>   

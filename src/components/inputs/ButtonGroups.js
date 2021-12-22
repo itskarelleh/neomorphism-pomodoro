@@ -21,28 +21,4 @@ const InitialControls = ({ sessionType, start, reset }) => (
     </div>
 )
 
-// const ResetButton = () => ( 
-//     <TimerButton handleChange={resetTimer} label="Reset">
-//         <FaUndoAlt />
-//     </TimerButton> 
-// );
-
-// const TimerRunningControls = ({ stop, play, running }) => (
-//     <div className="timer-controls">
-//         <TimerButton handleChange={stopTimer} label="Stop"><FaStop /></TimerButton>
-//         <TimerButton handleChange={togglePausePlay} label="Pause">{running ? ( <FaPause /> ) : ( <FaPlay /> )}</TimerButton>
-//         <ResetButton />
-//     </div>
-// );
-
-// const InitialControls = ({ sessionType }) => (
-//     <div className="timer-controls">
-//         <TimerButton handleChange={startTimer}
-//          label="Start"><FaPlay /></TimerButton> 
-//         {sessionType === sessionTimes[1].type ? (
-//             <ResetButton />
-//         ): null}
-//     </div>
-// )
-
 export { InitialControls, TimerRunningControls };

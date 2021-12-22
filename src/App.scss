@@ -20,9 +20,9 @@ $sunken-shadow: 6.125px 6.125px 4.083333492279053px 0px #AEAEC033 inset;
 $sunken-highlight: -4.083333492279053px -4.083333492279053px 4.083333492279053px 0px #FFFFFFB2 inset;
 //dimension
 $rounded: 50%;
-$timer-circle: 75vw;
-$btn-size: 15vw;
-$btn-size-small: 6vw;
+$timer-circle: 18rem;
+$btn-size: 4rem;
+$btn-size-small: 2rem;
 $watch: 218px;
 $phone: 320px;
 $small-tablet: 600px;
@@ -54,6 +54,13 @@ h6 {
   display: flex; 
   align-items: center;
   justify-content: flex-end;
+  width: 100%;
+}
+
+.flex-space {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -102,9 +109,9 @@ h6 {
     filter: drop-shadow(1px 1px 1px #aeaec0);
 }
 
-.timer {
+#timer {
   @extend .flex-center;
-  height: 70%;
+  height: 60%;
   width: 100%;
 }
 
@@ -114,10 +121,14 @@ h6 {
 
 .controls {
   width: 100%;
-  .timer-controls {
-    display: flex;
-    justify-content: space-evenly;
-  }
+  
+}
+
+.timer-controls {
+  width: 75%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
 }
 
 .timer-container {
@@ -147,6 +158,14 @@ h6 {
   border-radius: inherit;
   width: 100%;
   height: 100%;
+}
+
+#controls {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .btn-inner {
@@ -189,7 +208,7 @@ h6 {
 
 .btn-long {
   @extend .timer-btn;
-  height: 15vw;
+  height: 15rem;
   min-width: 100%;
   background: none;
   border-radius: 50px;
@@ -214,8 +233,8 @@ h6 {
 
 .btn-small {
   @extend .raised-soft;
-  width: 6vw;
-  height: 6vw;
+  width: $btn-size-small;
+  height: $btn-size-small;
   font-size: 0.8rem;
   background: none;
   border: none;
@@ -258,13 +277,23 @@ h6 {
   background: $primary;
 }
 
+#header {
+  height: 10%;
+  button {
+    margin-right: 10px;
+  }
+
+  :last-child {
+    margin: 0px;
+  }
+}
+
 #menu-head {
   margin-left: 25px;
 }
 
 #brand-title {
-    color: $primary;
-    margin-left: 25px;
+    color: $text;
     font-size: 2rem;
     @extend .raised-text;
 }
@@ -281,10 +310,10 @@ h6 {
     width: 50vw;
   }
 
-  .timer-btn {
-    height: 12vw;
-    width:12vw
-  }
+  // .timer-btn {
+  //   height: 12vw;
+  //   width:12vw
+  // }
 }
 
 @media (min-width: $tablet) and (max-width: $laptop) {
@@ -293,10 +322,10 @@ h6 {
     width: 45vw;
   }
 
-  .timer-btn {
-    width: 8vw;
-    height: 8vw;
-  }
+  // .timer-btn {
+  //   width: 8vw;
+  //   height: 8vw;
+  // }
 }
 
 @media screen and (min-width: $laptop) and (max-width: $desktop){ 
@@ -305,10 +334,10 @@ h6 {
     width: 25vw;
   }
 
-  .timer-btn {
-    width: 5vw;
-    height: 5vw;
-  }
+  // .timer-btn {
+  //   width: 5vw;
+  //   height: 5vw;
+  // }
 }
 
 @media screen and (min-width: $desktop) { 
