@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaPen } from 'react-icons/fa';
+import { presetListItems } from '../../enums';
 import TimerButton from '../inputs/TimerButton';
 import { FaMinus, FaPlus } from "react-icons/fa";
+import "./displays.scss";
 
-//formats the time to double digits for minutes and seconds
 const doubleDigitFormatting = (num) => {
     return num > 9 ? num : `0${num}`;
 }
 
-//gets the total minutes and seconds remaining 
-//as the timer is counting down
 const formatTime = (time) => {
     
     const minutes = doubleDigitFormatting(Math.floor(time / 60));
@@ -17,7 +17,7 @@ const formatTime = (time) => {
     return `${minutes}:${seconds}`;
 }
                 
-export default function TimerDisplay({ time, setTime, sessionType }) {
+const TimerDisplay = ({ time, setTime, sessionType }) => {
 
     const increase = () => {
         if(sessionType !== "Break") {
@@ -76,3 +76,5 @@ export default function TimerDisplay({ time, setTime, sessionType }) {
         </div>
     )
 }
+
+export { formatTime, TimerDisplay };

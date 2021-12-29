@@ -1,0 +1,66 @@
+@use "sass:map";
+
+$theme-colors: (
+    "primary": #FEECE6,
+    "primary-dark": #eacec8,
+    "dark": #252525,
+    "text": #a06f64,
+    "text-light": #fff5f2,
+    "dark-bg": linear-gradient(180deg, #221915 0%, #3E302A 46.34%, #1A0B05 125.28%)
+);
+/**neomorphism-shadows & highlights**/
+$raised: (
+    "highlight-dramatic": -4.083333492279053px -4.083333492279053px 12.25px 0px #FFFFFF,
+    "shadow-dramatic-1": 6.125px 6.125px 12.25px 0px #AEAEC066,
+    "shadow-dramatic-2": 0px 0px 0px 1px #FFFFFF33 inset,
+    "highlight": -1.6666666269302368px -1.6666666269302368px 5px 0px #FFFFFF,
+    "shadow-1": 2.5px 2.5px 5px 0px #AEAEC066,
+    "shadow-2": 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset,
+    "highlight-soft": -1.6666666269302368px -1.6666666269302368px 5px 0px #FFFFFF,
+    "soft-shadow-1": 2.5px 2.5px 5px 0px #AEAEC066,
+    "soft-shadow-2": 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset
+);
+
+$highlight-dramatic: -4.083333492279053px -4.083333492279053px 12.25px 0px #FFFFFF;
+$shadow-dramatic-1: 6.125px 6.125px 12.25px 0px #AEAEC066;
+$shadow-dramatic-2: 0px 0px 0px 1px #FFFFFF33 inset;
+$highlight: -1.6666666269302368px -1.6666666269302368px 5px 0px #FFFFFF;
+$shadow-1: 2.5px 2.5px 5px 0px #AEAEC066;
+$shadow-2: 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset;
+$highlight-soft: -1.6666666269302368px -1.6666666269302368px 5px 0px #FFFFFF;
+$soft-shadow-1: 2.5px 2.5px 5px 0px #AEAEC066;
+$soft-shadow-2: 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset;
+
+//sunken
+$sunken: (
+    "shadow": 6.125px 6.125px 4.083333492279053px 0px #AEAEC033 inset,
+    "highlight": -4.083333492279053px -4.083333492279053px 4.083333492279053px 0px #FFFFFFB2 inset
+);
+
+$sunken-shadow: 6.125px 6.125px 4.083333492279053px 0px #AEAEC033 inset;
+$sunken-highlight: -4.083333492279053px -4.083333492279053px 4.083333492279053px 0px #FFFFFFB2 inset;
+
+//dimension
+$sizes: (
+    "rounded": 50%,
+    "timer-circle": 18rem,
+    "btn-size": 4rem,
+    "btn-size-small": 2rem,
+    "watch": 218px,
+    "phone": 320px,
+    "small-tablet": 600px,
+    "tablet": 768px,
+    "laptop": 1200px,
+    "desktop": 1600px
+);
+
+$rounded: 50%;
+$timer-circle: 18rem;
+$btn-size: 4rem;
+$btn-size-small: 2rem;
+$watch: 218px;
+$phone: 320px;
+$small-tablet: 600px;
+$tablet: 768px;
+$laptop: 1200px;
+$desktop: 1600px;

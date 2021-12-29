@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from '../inputs/Button';
-import { FaTasks, FaCog, FaTimes } from 'react-icons/fa';
-import TodoList from './TodoList';
+import { FaTasks, FaTimes } from 'react-icons/fa';
+import { TodoList } from '../lists';
+import "./menu.scss";
 
 const MenuContainer = ({ handleClick, children }) => (
     <div id="menu">
         <div id="menu-head" className="flex-start">
-            <div className="icon">
+            <div className="icon"> 
                 <FaTimes onClick={handleClick} />
             </div>
-            {/* <h1 id="brand-title" style={{ marginLeft: '25px'}}>Pomodoro</h1> */}
         </div>
         <div className="menu-content">
             {children}
@@ -32,7 +32,8 @@ const MenuButton = ({ icon, children }) => {
     )
 }
 
-export default function Menu() {
+const Menu = ({ tasks }) => {
+
 
     return (
         <header id="header" className="flex-space">
@@ -40,12 +41,14 @@ export default function Menu() {
             <div>
                 <MenuButton icon={<FaTasks />}>
                     <h3 className="raised-text">Tasks</h3>
-                    <TodoList />
+                    <TodoList listItems={tasks} />
                 </MenuButton>
-                <MenuButton icon={<FaCog />}>
+                {/* <MenuButton icon={<FaCog />}>
                     <h3 className="raised-text">Settings</h3>
-                </MenuButton>
+                </MenuButton> */}
             </div>
         </header>
     )
 }
+
+export { Menu }

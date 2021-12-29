@@ -1,0 +1,47 @@
+@use "sass:map";
+@import "../../utils/variables";
+
+.raised-text {
+    text-shadow: 1px 1px 1px #aeaec0, -1px -1px 1px #faf8f1;
+}
+
+.li-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 75vw;
+    margin: 0 auto;
+
+    .is-complete{
+        width: 10%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .list-item-label {
+        width: 80%;
+    }
+
+    .task-input[type=text] {
+        width: 100%;
+        border-radius: 16px;
+        border: none;
+        padding: 10px;
+        text-indent: 10px;
+        background: map-get($map: $theme-colors, $key: "primary");
+        color: map-get($map: $theme-colors, $key: "primary-dark");
+        box-shadow: $sunken-highlight, $sunken-shadow;
+        // @extend .raised-text;
+    }
+
+    .edit-btn {
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        
+        button {
+            background: none;
+            border: none;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import TimerDisplay from './displays/TimerDisplay';
-import AudioButton from './inputs/AudioButton';
+import { TimerDisplay, formatTime } from './displays';
+import { AudioButton } from './inputs';
 import { InitialControls, TimerRunningControls } from './inputs/ButtonGroups';
 import { sessionTimes } from '../enums';
 
@@ -95,12 +95,17 @@ export default function Pomodoro() {
     }
 
     useEffect(() => {
+        document.title = "Pomodoro";
+
         if(audio.currentTime === 0 && time > 0) {
             audio.loop = true;
         }
  
         if(time === 0) {
             stopTimer();
+            document.title = "Pomodoro Finished";
+        } else if(sessionType !== null) {
+            document.title = "Running: " + formatTime(time);
         }
     });
 

@@ -1,44 +1,15 @@
-//palette
-$primary: #FEECE6;
-$primary-dark: #eacec8;
-$dark: #252525;
-$text: #a06f64;
-$dark-bg: linear-gradient(180deg, #221915 0%, #3E302A 46.34%, #1A0B05 125.28%);
-/**neomorphism-shadows & highlights**/
-//raised
-$highlight-dramatic: -4.083333492279053px -4.083333492279053px 12.25px 0px #FFFFFF;
-$shadow-dramatic-1: 6.125px 6.125px 12.25px 0px #AEAEC066;
-$shadow-dramatic-2: 0px 0px 0px 1px #FFFFFF33 inset;
-$highlight: -1.6666666269302368px -1.6666666269302368px 5px 0px #FFFFFF;
-$shadow-1: 2.5px 2.5px 5px 0px #AEAEC066;
-$shadow-2: 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset;
-$highlight-soft: -1.6666666269302368px -1.6666666269302368px 5px 0px #FFFFFF;
-$soft-shadow-1: 2.5px 2.5px 5px 0px #AEAEC066;
-$soft-shadow-2: 0px 0px 0px 0.3333333432674408px #FFFFFF33 inset;
-//sunken
-$sunken-shadow: 6.125px 6.125px 4.083333492279053px 0px #AEAEC033 inset;
-$sunken-highlight: -4.083333492279053px -4.083333492279053px 4.083333492279053px 0px #FFFFFFB2 inset;
-//dimension
-$rounded: 50%;
-$timer-circle: 18rem;
-$btn-size: 4rem;
-$btn-size-small: 2rem;
-$watch: 218px;
-$phone: 320px;
-$small-tablet: 600px;
-$tablet: 768px;
-$laptop: 1200px;
-$desktop: 1600px;
+@use "sass:map";
+@import "utils/variables";
 
 h6 {
   margin: 0;
   font-weight: 500;
   font-size: 1.5rem;
-  color: $text;
+  color: map.get($theme-colors, "text");;
 }
 
 .App {
-  background: $primary;
+  background: map.get($theme-colors, "primary");
   height: 100vh;
 }
 
@@ -92,7 +63,7 @@ h6 {
 }
 
 .raised-text {
-  text-shadow: 1px 1px 1px #aeaec0;
+  text-shadow: 1px 1px 1px #aeaec0, -1px -1px 1px #faf8f1;
 }
 
 .raised-soft {
@@ -121,7 +92,6 @@ h6 {
 
 .controls {
   width: 100%;
-  
 }
 
 .timer-controls {
@@ -148,7 +118,7 @@ h6 {
 }
 
 .timer-text {
-  color: $text;
+  color: map.get($theme-colors, "primary-dark");;
   display: inline;
   margin: 0;
   @extend .raised-text
@@ -170,8 +140,8 @@ h6 {
 
 .btn-inner {
   border-radius: inherit;
-    fill: $primary;
-    color: $primary;
+    fill: map.get($theme-colors, "primary");;
+    color: map.get($theme-colors, "primary");;
     display: flex;
     justify-content: center;
     svg {
@@ -189,8 +159,8 @@ h6 {
   @extend .raised;
   div {
     border-radius: inherit;
-    fill: $text;
-    color: $text;
+    fill: map.get($theme-colors, "text");;
+    color: map.get($theme-colors, "text");;
     display: flex;
     flex-flow: wrap;
     justify-content: center;
@@ -239,7 +209,7 @@ h6 {
   background: none;
   border: none;
   border-radius: 50%;
-  color: $text;
+  color: map.get($theme-colors, "text");;
   :hover {
     cursor: pointer;
   }
@@ -257,7 +227,7 @@ h6 {
     flex-direction: column;
     margin: 0 10px;
     align-items: center;
-    color: $text;
+    color: map.get($theme-colors, "text");;
     svg {
       filter: drop-shadow(1.5px 3px 0px #AEAEC066);
       // @extend .raised-soft;
@@ -274,26 +244,16 @@ h6 {
   top: 0;
   position: absolute;
   left: 0;
-  background: $primary;
+  background: map.get($theme-colors, "primary");;
 }
 
-#header {
-  height: 10%;
-  button {
-    margin-right: 10px;
-  }
-
-  :last-child {
-    margin: 0px;
-  }
-}
 
 #menu-head {
   margin-left: 25px;
 }
 
 #brand-title {
-    color: $text;
+    color: map.get($theme-colors, "primary-dark");;
     font-size: 2rem;
     @extend .raised-text;
 }
@@ -306,38 +266,23 @@ h6 {
 
 @media (min-width: $small-tablet) {
   .timer-container {
-    height: 50vw;
-    width: 50vw;
+    height: 15rem;
+    width: 15rem;
   }
-
-  // .timer-btn {
-  //   height: 12vw;
-  //   width:12vw
-  // }
 }
 
 @media (min-width: $tablet) and (max-width: $laptop) {
   .timer-container {
-    height: 45vw;
-    width: 45vw;
+    height: 20rem;
+    width: 20rem;
   }
-
-  // .timer-btn {
-  //   width: 8vw;
-  //   height: 8vw;
-  // }
 }
 
 @media screen and (min-width: $laptop) and (max-width: $desktop){ 
   .timer-container{
-    height: 25vw;
-    width: 25vw;
+    height: 20rem;
+    width: 20rem;
   }
-
-  // .timer-btn {
-  //   width: 5vw;
-  //   height: 5vw;
-  // }
 }
 
 @media screen and (min-width: $desktop) { 

@@ -2,6 +2,7 @@ import { FaVolumeMute, FaTree, FaFire, FaWater } from "react-icons/fa";
 import FireSound from 'assets/fire.mp3';
 import NatureSound from 'assets/nature.mp3';
 import OceanSound from 'assets/ocean.mp3'
+
 const soundOptions = [
     { name: "Silent", icon: <FaVolumeMute />, audio: '' },
     { name: "Nature", icon: <FaTree />, audio: NatureSound },

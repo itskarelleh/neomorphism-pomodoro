@@ -5,7 +5,9 @@
             "alias": {
                 "components": "./src/components",
                 "assets": "./src/assets",
-                "firebase": "./src/firebase"
+                "firebase": "./src/firebase",
+                "utils": "./src/utils",
+                "hooks": "./src/hooks"
             }
         }]
     ]
