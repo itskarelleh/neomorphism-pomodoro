@@ -34,13 +34,12 @@ const MenuButton = ({ icon, children }) => {
 
 const Menu = ({ tasks }) => {
 
-
     return (
         <header id="header" className="flex-space">
             <h1 id="brand-title">Pomodoro</h1>
             <div>
                 <MenuButton icon={<FaTasks />}>
-                    <h3 className="raised-text">Tasks</h3>
+                    <h2 className="menu-tab-header raised-text">Tasks</h2>
                     <TodoList listItems={tasks} />
                 </MenuButton>
                 {/* <MenuButton icon={<FaCog />}>

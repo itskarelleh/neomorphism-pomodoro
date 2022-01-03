@@ -6,10 +6,6 @@
     button {
       margin-right: 10px;
     }
-  
-    // :last-child {
-    //   margin: 0px;
-    // }
   }
 
 #menu {
@@ -19,8 +15,17 @@
     position: absolute;
     left: 0;
     background: map.get($theme-colors, "primary");
+    overflow: hidden;
 }
 
+.menu-content {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.menu-tab-header {
+  color: map-get($map: $theme-colors, $key: "primary");
+}
 
 #menu-head {
     margin-left: 25px;

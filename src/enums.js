@@ -16,9 +16,9 @@ const sessionTimes = [
 ];
 
 const presetListItems = [
-    { id: 1, label: "Water plants", isComplete: false },
-    { id: 2, label: "Meeting with team at 9AM", isComplete: false },
-    { id: 3, label: "Use pomodoro for increased producivity", isComplete: true }
+    { id: 'c387d188-716c-4758-9f42-e91f90c37c88', label: "Water plants", isComplete: false },
+    { id: '98581ccc-69ac-4dc4-8193-ba0b99fb8d00', label: "Meeting with team at 9AM", isComplete: false },
+    { id: '82e3c8d7-ffc9-46ca-949c-b16f26f872fe', label: "Use pomodoro for increased producivity", isComplete: true }
 ]
 
 export { sessionTimes, soundOptions, presetListItems };

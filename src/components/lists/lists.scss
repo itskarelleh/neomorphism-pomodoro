@@ -9,8 +9,9 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 75vw;
+    width: 95%;
     margin: 0 auto;
+    padding: 10px 0px;
 
     .is-complete{
         width: 10%;
@@ -23,19 +24,7 @@
     }
 
     .task-input[type=text] {
-        width: 95%;
-        border-radius: 16px;
-        // border: none;
-        padding: 10px;
-        text-indent: 10px;
-        background: map-get($map: $theme-colors, $key: "primary");
-        color: map-get($map: $theme-colors, $key: "primary-dark");
-        box-shadow: $sunken-highlight, $sunken-shadow;
-        // @extend .raised-text
-    }
-
-    .task-input:focus-visible {
-        border: 1px soild map-get($map: $theme-colors, $key: "primary-dark" );
+        width: 90%;
     }
 
     .edit-btn {
@@ -50,6 +39,42 @@
     }
 }
 
+.tasks-container {
+    overflow-x: hidden;
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+
+.task-input[type=text] {
+    width: 95%;
+    border-radius: 16px;
+    border: none;
+    padding: 10px;
+    text-indent: 10px;
+    background: map-get($map: $theme-colors, $key: "primary");
+    color: map-get($map: $theme-colors, $key: "text");
+    box-shadow: $sunken-highlight, $sunken-shadow;
+}
+
+.task-input[type=text]:focus-visible {
+    border: 1px soild map-get($map: $theme-colors, $key: "primary-dark" );
+}
+
+.task-add {
+    display: flex;
+    width: 75vw;
+    margin: 0 auto;
+    input[type=text] {
+        width: 75%;
+    }
+
+    button {
+        width: 20%;
+        height: 100%;
+    }
+}
+
 .btn-submit {
     border-radius: 10px;
     height: 1rem;
@@ -59,4 +84,20 @@
     background: map-get($map: $theme-colors, $key: "primary" );
     border: none;
     box-shadow: map-get($map: $raised, $key: "shadow-1"), map-get($map: $raised, $key: "highlight");
+}
+
+.task-label {
+    color: map-get($map: $theme-colors, $key: "text");
+}
+
+.task-complete {
+    text-decoration: line-through;
+    opacity: 0.50;
+    color: map-get($map: $theme-colors, $key: "text");
+}
+
+.popup {
+    position: sticky;
+    width: 100%;
+    // height
 }
