@@ -144,7 +144,7 @@ const ListItem = ({ task, tasks, setTasks }) => {
                 <div className="is-complete">
                     <input name="isComplete" onChange={e => toggleTaskComplete(e)} 
                     checked={current.isComplete}
-                    className="checkbox" type="checkbox" />
+                    className="task-check" type="checkbox" />
                 </div>
                 <div className="list-item-label">
                     {open ? 
@@ -177,9 +177,11 @@ const TodoList = () => {
 
     return (
         <>
-            <AddATask tasks={tasksObj} setTasks={setTasks} 
-            inputVal={taskInput} 
-            setInputVal={setTaskInput} />
+            <div className="tasks-head">
+                <h2 className="menu-tab-header raised-text">Tasks</h2>
+                <AddATask tasks={tasksObj} setTasks={setTasks} 
+                inputVal={taskInput} setInputVal={setTaskInput} />
+            </div>
             <div className="tasks-container">
             {tasksObj && tasksObj.map((task) => (
                 <ListItem task={task} tasks={tasksObj} setTasks={setTasks}/>

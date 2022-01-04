@@ -39,7 +39,6 @@ const Menu = ({ tasks }) => {
             <h1 id="brand-title">Pomodoro</h1>
             <div>
                 <MenuButton icon={<FaTasks />}>
-                    <h2 className="menu-tab-header raised-text">Tasks</h2>
                     <TodoList listItems={tasks} />
                 </MenuButton>
                 {/* <MenuButton icon={<FaCog />}>
