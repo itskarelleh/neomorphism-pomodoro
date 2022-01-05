@@ -7,7 +7,7 @@ import "./menu.scss";
 const MenuContainer = ({ handleClick, children }) => (
     <div id="menu">
         <div id="menu-head" className="flex-start">
-            <div className="icon"> 
+            <div id="exit" className="icon"> 
                 <FaTimes onClick={handleClick} />
             </div>
         </div>
@@ -41,9 +41,6 @@ const Menu = ({ tasks }) => {
                 <MenuButton icon={<FaTasks />}>
                     <TodoList listItems={tasks} />
                 </MenuButton>
-                {/* <MenuButton icon={<FaCog />}>
-                    <h3 className="raised-text">Settings</h3>
-                </MenuButton> */}
             </div>
         </header>
     )

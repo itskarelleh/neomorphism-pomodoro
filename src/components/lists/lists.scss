@@ -117,6 +117,8 @@
 
 .btn-submit {
     border-radius: 10px;
+    cursor: pointer;
+    color: map-get($map: $theme-colors, $key: "text");
     height: 1rem;
     min-width: 2rem;
     padding: 10px;
