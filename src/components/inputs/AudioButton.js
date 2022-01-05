@@ -2,33 +2,41 @@ import React, { useState } from 'react';
 import Button from './Button';
 import { FaMusic, FaTimes } from "react-icons/fa";
 import { soundOptions } from "../../enums";
+import useSound from 'use-sound';
 
-const SoundsList = ({ setSelected }) => {
+const SoundOption = ({ option, ...props }) => {
+    
+    const [ play, { stop } ] = useSound(option.audio);
+    const [ isActive, setIsActive ] = useState(false);
+
+    const toggleAudio = () => {
+        setIsActive(!isActive);
+        if(isActive) play();
+        if(!isActive) stop();
+    }
+    return <li onClick={toggleAudio} {...props}>{option.icon}{option.name}</li>
+}
+const SoundsList = () => {
 
     return (
         <ul className="sound-options">
             {soundOptions && soundOptions.map((option,index) => (
-                <li key={index} role="button"
-                onClick={setSelected(option.audio)}
-                id={`sound-${option.name}`}>
-                    {option.icon}
-                    {option.name}
-                </li>
+                <SoundOption option={option} key={index} role="button"
+                id={`sound-${option.name}`} />
             ))}
         </ul>
     )
 }
 
-const AudioButton = ({ sound, setSound }) => {
+const AudioButton = () => {
     
     const [ open, setOpen ] = useState(false);
-    let audioObj = new Audio(sound);
 
     const toggleOpen = () => setOpen(!open);
 
     return (
         <div className="flex-end">
-            {open ?  <SoundsList setSelected={setSound} audioObj={audioObj} /> : null }
+            {open ?  <SoundsList /> : null }
             <Button handleClick={toggleOpen}>
                 {open ? <FaTimes /> : <FaMusic /> }
             </Button>

@@ -62,42 +62,6 @@
     box-shadow: $sunken-highlight, $sunken-shadow;
 }
 
-.task-check[type=checkbox] {
-    position: relative;
-    width: 25px;
-    height: 25px;
-    color: black;
-    border: 1px solid map-get($map: $theme-colors, $key: "primary-dark");
-    border-radius: 4px;
-    appearance: none;
-    box-shadow: 1.125px 1.125px 4.0833334923px 0px #aeaec033 inset, -2.083333px -2.083333px 2.083333px 0px #ffffffb2 inset;
-    outline: 0;
-    cursor: pointer;
-    transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
-    &::before {
-      position: absolute;
-      content: '';
-      display: block;
-      top: 2px;
-      left: 7px;
-      width: 8px;
-      height: 14px;
-      border-style: solid;
-      border-color: white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      opacity: 0;
-    }
-    &:checked {
-      color: map-get($map: $theme-colors, $key: "text" );
-      border-color: map-get($map: $theme-colors, $key: "text");
-      background: map-get($map: $theme-colors, $key: "text");
-      &::before {
-        opacity: 1;
-      }
-    }
-}
-
 .task-input[type=text]:focus-visible {
     border: 1px soild map-get($map: $theme-colors, $key: "primary-dark" );
 }
