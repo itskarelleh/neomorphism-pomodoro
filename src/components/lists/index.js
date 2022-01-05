@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import Checkbox from '../inputs/Checkbox';
 import { FaPen, FaTrash } from 'react-icons/fa';
 import { presetListItems } from '../../enums';
 import useLocalStorage from 'hooks/useLocalStorage';
+import useSound from 'use-sound';
+import Pop from 'assets/pop.mp3';
 import { v4 as uuidv4 } from 'uuid';
 import './lists.scss';
 
@@ -38,6 +41,8 @@ const updateTasks = (val, tasks, setTasks) => {
 
 const AddATask = ({ tasks, setTasks, inputVal, setInputVal }) => {
     
+    const [ play ] = useSound(Pop);
+    
     const addNewTask = (val, e) => {
         if(tasks.length == 10) {
             alert("To add more tasks, sign up");
@@ -66,7 +71,7 @@ const AddATask = ({ tasks, setTasks, inputVal, setInputVal }) => {
                 }}>
                 <input value={inputVal} onChange={e => setInputVal(e.target.value)} 
                 className="task-input" type="text" placeholder="I want to..." />
-                <button className="btn-submit"
+                <button onClick={play} className="btn-submit"
                 type="submit">Add</button>
             </form>
         </>
@@ -134,7 +139,7 @@ const ListItem = ({ task, tasks, setTasks }) => {
         var foundTask = tasks.findIndex(x => x.id === current.id);
         tasks[foundTask] = current;
 
-        // rearrangeTasks(tasks, current);
+        tasks.push(tasks.splice(foundTask, 1)[0]);
         setTasks(JSON.stringify(tasks));
     }
 
@@ -142,9 +147,9 @@ const ListItem = ({ task, tasks, setTasks }) => {
         <div className="list-item-todo" id={`li-${id}`}>
             <div className="li-content">
                 <div className="is-complete">
-                    <input name="isComplete" onChange={e => toggleTaskComplete(e)} 
-                    checked={current.isComplete}
-                    className="task-check" type="checkbox" />
+                    <Checkbox name="isComplete" 
+                    onChange={e => toggleTaskComplete(e)} 
+                    checked={current.isComplete} />
                 </div>
                 <div className="list-item-label">
                     {open ? 

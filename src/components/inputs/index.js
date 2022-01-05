@@ -66,7 +66,6 @@ const SoundsList = ({ setSelected }) => {
         <ul className="sound-options">
             {soundOptions && soundOptions.map((option,index) => (
                 <li key={index} role="button"
-                onClick={setSelected(option.audio)}
                 id={`sound-${option.name}`}>
                     {option.icon}
                     {option.name}

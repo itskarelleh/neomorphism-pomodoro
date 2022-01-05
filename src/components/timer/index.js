@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { FaPen } from 'react-icons/fa';
-import { presetListItems } from '../../enums';
 import TimerButton from '../inputs/TimerButton';
 import { FaMinus, FaPlus } from "react-icons/fa";
-import "./displays.scss";
+import "./timer.scss";
 
 const doubleDigitFormatting = (num) => {
     return num > 9 ? num : `0${num}`;
