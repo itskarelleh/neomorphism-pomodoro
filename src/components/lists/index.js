@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Checkbox from '../inputs/Checkbox';
+import { CheckBox } from '../inputs';
 import { FaPen, FaTrash } from 'react-icons/fa';
 import { presetListItems } from '../../enums';
 import useLocalStorage from 'hooks/useLocalStorage';
@@ -7,30 +7,30 @@ import useSound from 'use-sound';
 import Pop from 'assets/pop.mp3';
 import { v4 as uuidv4 } from 'uuid';
 import './lists.scss';
-
+import Popup from '../popup';
 
 // const TASKS_NAMESPACE = '95dea73a-491b-4a08-9a0d-16f5b730e0c0';
 
-const rearrangeTasks = (arr, target) => {
-    //check if target is last element of the array
+// const rearrangeTasks = (arr, target) => {
+//     //check if target is last element of the array
 
-    var pos = arr.indexOf(target);
-    if(pos == arr[arr.length - 1]) return;
+//     var pos = arr.indexOf(target);
+//     if(pos == arr[arr.length - 1]) return;
 
-    // var temp;
+//     // var temp;
 
-    do {
-        if(arr[pos] === arr[arr.length - 1]) {
-            arr[pos] = target;
-            break;
-        }
-        arr[pos] = arr[pos + 1];
-        // arr[pos + 1] = null;
-        pos++;
+//     do {
+//         if(arr[pos] === arr[arr.length - 1]) {
+//             arr[pos] = target;
+//             break;
+//         }
+//         arr[pos] = arr[pos + 1];
+//         // arr[pos + 1] = null;
+//         pos++;
 
-    } while(pos < arr.length);
+//     } while(pos < arr.length);
 
-}
+// }
 
 const updateTasks = (val, tasks, setTasks) => {
     var newTasks = tasks;
@@ -44,7 +44,7 @@ const AddATask = ({ tasks, setTasks, inputVal, setInputVal }) => {
     const [ play ] = useSound(Pop);
     
     const addNewTask = (val, e) => {
-        if(tasks.length == 10) {
+        if(tasks.length === 10) {
             alert("To add more tasks, sign up");
         } else {
             e.preventDefault();
@@ -82,23 +82,14 @@ const DeleteButton = ({ label }) => {
 
     const [ open, setOpen ] = useState(false);
 
-    const handleDelete = () => {
-        //asks user if they want to delete the task
-
-        //user confirms 
-    }
-
     return (
         <>
             {open && 
-            <div className="popup-bg">
-                <div className="popup">
-                    <div className="popup-content">
-                        <h3>Are you sure you want to delete: </h3>
-                        <p>{label}</p>
-                    </div>
-                </div> 
-            </div>}
+            <Popup onClick={() => setOpen(!open)}>
+                <h3>Are you sure you want to delete: </h3>
+                <p>{label}</p>
+            </Popup>
+            }
             <button onClick={() => setOpen(!open)}>
                 <FaTrash />
             </button>
@@ -118,7 +109,7 @@ const ListItem = ({ task, tasks, setTasks }) => {
 
     const toggleOpen = () => setOpen(!open);
 
-    const handleInputChange = (e) => setCurrent(prev => ({...prev, label: e.target.value }));
+    // const handleInputChange = (e) => setCurrent(prev => ({...prev, label: e.target.value }));
 
     const updateTask = (e) => {
         var foundTask = tasks.findIndex(x => x.id === current.id);
@@ -127,12 +118,12 @@ const ListItem = ({ task, tasks, setTasks }) => {
         setTasks(JSON.stringify(tasks));
     }   
 
-    //TODO: delete a task
-    const deleteTask = () => {
-        // var foundTask = tasks.findIndex(x => x.id === current.id);
-        // tasks = tasks.splice(0, foundTask).concat(tasks.slice(-foundTask));
-        console.log('Delete task: ' + current.id);
-    }
+    // //TODO: delete a task
+    // const deleteTask = () => {
+    //     // var foundTask = tasks.findIndex(x => x.id === current.id);
+    //     // tasks = tasks.splice(0, foundTask).concat(tasks.slice(-foundTask));
+    //     console.log('Delete task: ' + current.id);
+    // }
 
     const toggleTaskComplete = () => {
         setCurrent(prev => ({...prev, isComplete: !isComplete }));
@@ -147,7 +138,7 @@ const ListItem = ({ task, tasks, setTasks }) => {
         <div className="list-item-todo" id={`li-${id}`}>
             <div className="li-content">
                 <div className="is-complete">
-                    <Checkbox name="isComplete" 
+                    <CheckBox name="isComplete" 
                     onChange={e => toggleTaskComplete(e)} 
                     checked={current.isComplete} />
                 </div>
@@ -164,9 +155,7 @@ const ListItem = ({ task, tasks, setTasks }) => {
                     <button onClick={toggleOpen}>
                         <FaPen className="raised-icon" />
                     </button>
-                    <button onClick={deleteTask}>
-                        <FaTrash className="raised-icon" />
-                    </button>
+                    <DeleteButton label={current.label} />
                 </div>
             </div>
         </div>

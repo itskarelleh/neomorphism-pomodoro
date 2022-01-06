@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaUndoAlt, FaStop, FaPause, FaPlay } from 'react-icons/fa';
 import { FaMusic, FaTimes } from "react-icons/fa";
 import { soundOptions, sessionTimes } from "../../enums";
+import Click from 'assets/click.mp3';
+import PopSound from 'assets/pop.mp3';
+import useSound from 'use-sound';
+import './inputs.scss';
 
-const Button = ({ label, icon, handleClick, children }) => (
+const Button = ({ label, icon, handleClick, children }) => {
+ 
+    const [ play ] = useSound(PopSound);
+
+    return ( 
     <>
-        <button className="btn-small" onClick={handleClick}>
+        <button className="btn-small" onClick={() => {
+            play();
+            handleClick();
+        }}>
             <div>
                 {icon && icon}
                 {label && <p>label</p>}
@@ -13,7 +24,23 @@ const Button = ({ label, icon, handleClick, children }) => (
             </div>
         </button>
     </>
-)
+    )
+}
+
+const TimerButton = ({ handleChange: handleClick, label, icon, children }) => {
+    
+    const [ play ] = useSound(PopSound);
+    return (
+        <button onClick={() => { handleClick(); play(); }} 
+        className="timer-btn">
+            <div className="btn-base">
+                {icon && <p>{icon}</p>}
+                {label && <p>{label}</p> }
+                {children}
+            </div>
+        </button>
+    )
+}
 
 const TimerRunningControls = ({ stop, play, running, reset }) => (
     <div className="timer-controls">
@@ -33,58 +60,55 @@ const InitialControls = ({ sessionType, start, reset }) => (
     </div>
 )
 
-const TimerButton = ({ handleChange, label, icon, children }) => (
-    
-    <>
-    <button onClick={handleChange} 
-    className="timer-btn">
-        <div className="btn-base">
-            {icon && <p>{icon}</p>}
-            {label && <p>{label}</p> }
-            {children}
-        </div>
-    </button>
-    </>
-)
 
-const ToggleSwitch = ({ handleBoolean }) => {
 
-    return (
-        <>
-            <div className="toggle-switch-container">
-                <div className="toggle-bar">
+// const ToggleSwitch = ({ handleBoolean }) => {
+
+//     return (
+//         <>
+//             <div className="toggle-switch-container">
+//                 <div className="toggle-bar">
                     
-                </div>
-            </div>
-        </>
-    )
+//                 </div>
+//             </div>
+//         </>
+//     )
+// }
+
+const SoundOption = ({ option, ...props }) => {
+    
+    const [ play, { stop } ] = useSound(option.audio);
+    const [ isActive, setIsActive ] = useState(false);
+
+    const toggleAudio = () => {
+        setIsActive(!isActive);
+        if(isActive) play();
+        if(!isActive) stop();
+    }
+    return <li onClick={toggleAudio} {...props}>{option.icon}{option.name}</li>
 }
 
-const SoundsList = ({ setSelected }) => {
+const SoundsList = () => {
 
     return (
         <ul className="sound-options">
             {soundOptions && soundOptions.map((option,index) => (
-                <li key={index} role="button"
-                id={`sound-${option.name}`}>
-                    {option.icon}
-                    {option.name}
-                </li>
+                <SoundOption option={option} key={index} role="button"
+                id={`sound-${option.name}`} />
             ))}
         </ul>
     )
 }
 
-const AudioButton = ({ sound, setSound }) => {
+const AudioButton = () => {
     
     const [ open, setOpen ] = useState(false);
-    let audioObj = new Audio(sound);
 
     const toggleOpen = () => setOpen(!open);
 
     return (
         <div className="flex-end">
-            {open ?  <SoundsList setSelected={setSound} audioObj={audioObj} /> : null }
+            {open ?  <SoundsList /> : null }
             <Button handleClick={toggleOpen}>
                 {open ? <FaTimes /> : <FaMusic /> }
             </Button>
@@ -92,7 +116,30 @@ const AudioButton = ({ sound, setSound }) => {
     )
 }
 
+const CheckBox = ({ onChange, ...props}) => {
+
+    const [ play ] = useSound(Click);
+
+    return (
+        <>
+            <input onChange={onChange} onClick={play}
+            className="task-check" type="checkbox" {...props} />
+        </>
+    )
+}
+
+const TextInput = ({ buttons, ...props}) => {
+    return (
+        <div className="">
+            <input type="text" {...props} />
+            <div className="btn-group">
+                {buttons}
+            </div>
+        </div>
+    )
+}
 
 
-export { Button, TimerRunningControls, InitialControls, TimerButton, 
-    ToggleSwitch, AudioButton }
+
+export { Button, TimerRunningControls, InitialControls, 
+    TimerButton, AudioButton, CheckBox, TextInput }

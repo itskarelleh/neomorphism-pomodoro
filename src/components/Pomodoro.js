@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TimerDisplay, formatTime } from './timer';
-import AudioButton from './inputs/AudioButton';
-import { InitialControls, TimerRunningControls } from './inputs/ButtonGroups';
+import { AudioButton, InitialControls, TimerRunningControls} from './inputs';
 import { sessionTimes } from '../enums';
 
 export default function Pomodoro() {

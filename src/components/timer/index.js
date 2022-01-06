@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TimerButton from '../inputs/TimerButton';
+import { TimerButton } from '../inputs';
 import { FaMinus, FaPlus } from "react-icons/fa";
 import "./timer.scss";
 

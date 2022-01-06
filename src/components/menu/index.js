@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '../inputs/Button';
+import { Button } from '../inputs';
 import { FaTasks, FaTimes } from 'react-icons/fa';
 import { TodoList } from '../lists';
 import "./menu.scss";
