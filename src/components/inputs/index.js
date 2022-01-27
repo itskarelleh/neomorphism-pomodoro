@@ -6,6 +6,7 @@ import Click from 'assets/click.mp3';
 import PopSound from 'assets/pop.mp3';
 import useSound from 'use-sound';
 import './inputs.scss';
+import { TimerContext } from 'context/TimerContext';
 
 const Button = ({ label, icon, handleClick, children }) => {
  
@@ -60,21 +61,6 @@ const InitialControls = ({ sessionType, start, reset }) => (
     </div>
 )
 
-
-
-// const ToggleSwitch = ({ handleBoolean }) => {
-
-//     return (
-//         <>
-//             <div className="toggle-switch-container">
-//                 <div className="toggle-bar">
-                    
-//                 </div>
-//             </div>
-//         </>
-//     )
-// }
-
 const SoundOption = ({ option, ...props }) => {
     
     const [ play, { stop } ] = useSound(option.audio);
@@ -85,7 +71,11 @@ const SoundOption = ({ option, ...props }) => {
         if(isActive) play();
         if(!isActive) stop();
     }
-    return <li onClick={toggleAudio} {...props}>{option.icon}{option.name}</li>
+    return (
+        <TimerContext.Consumer>
+            <li onClick={toggleAudio} {...props}>{option.icon}{option.name}</li>
+        </TimerContext.Consumer>
+    )
 }
 
 const SoundsList = () => {
@@ -138,8 +128,6 @@ const TextInput = ({ buttons, ...props}) => {
         </div>
     )
 }
-
-
 
 export { Button, TimerRunningControls, InitialControls, 
     TimerButton, AudioButton, CheckBox, TextInput }

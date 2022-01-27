@@ -222,6 +222,8 @@ h6 {
 .sound-options {
   list-style-type: none;
   display: inline;
+  position: absolute;
+  right: 12rem;
   li{
     display: inline-flex;
     flex-direction: column;
@@ -230,7 +232,6 @@ h6 {
     color: map.get($theme-colors, "text");;
     svg {
       filter: drop-shadow(1.5px 3px 0px #AEAEC066);
-      // @extend .raised-soft;
     }
     :hover {
       cursor: pointer;
@@ -246,7 +247,6 @@ h6 {
   left: 0;
   background: map.get($theme-colors, "primary");;
 }
-
 
 #menu-head {
   margin-left: 25px;
@@ -283,6 +283,9 @@ h6 {
     height: 20rem;
     width: 20rem;
   }
+  .sound-options {
+    right: 10rem;
+  }
 }
 
 @media screen and (min-width: $desktop) { 
@@ -295,4 +298,6 @@ h6 {
     width: $btn-size-small;
     height: $btn-size-small;
   }
+
+  
 }

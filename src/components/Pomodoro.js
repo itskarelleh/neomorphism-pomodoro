@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TimerDisplay, formatTime } from './timer';
 import { AudioButton, InitialControls, TimerRunningControls} from './inputs';
 import { sessionTimes } from '../enums';
+import { TimerContext } from 'context/TimerContext';
 
 export default function Pomodoro() {
 
@@ -86,21 +87,25 @@ export default function Pomodoro() {
 
     return (
         <>
-           <div id="timer">
-           <TimerDisplay time={time} setTime={setTime}
-            sessionType={sessionType}
-            isRunning={running} />
-           </div>
-           <div id="controls">
-               {running ? <TimerRunningControls stop={stopTimer} 
-               play={togglePausePlay} reset={resetTimer} running={running}
-                /> : 
+        <TimerContext.Provider value={running}>
+            <div id="timer">
+                <TimerDisplay time={time} setTime={setTime} 
+                sessionType={sessionType}
+                isRunning={running} />
+                </div>
+                <div id="controls">
+                { running ? 
+                <TimerRunningControls stop={stopTimer} 
+                play={togglePausePlay} reset={resetTimer} 
+                running={running} /> 
+                    : 
                 <InitialControls sessionType={sessionType} 
-                start={startTimer} reset={resetTimer} />}
-               <div className="settings">
+                start={startTimer} reset={resetTimer} /> }
+                <div className="settings">
                     <AudioButton />
                 </div>
-           </div>
+            </div>
+        </TimerContext.Provider>
         </>   
     )
 }
