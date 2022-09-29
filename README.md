@@ -1,4 +1,6 @@
-<h1>Pomodoro Timer</h1>
+# Pomodoro Timer
+
+## Description
 This timer uses the Pomodoro Technique, a time management method that breaks work down into intervals which are separated by small breaks.
  
 Framework: React.js
