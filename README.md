@@ -4,8 +4,8 @@ This project is a timer that uses the Pomodoro Technique, a time management meth
 ## Features
 - Users can set a timer for work sessions from 15 to 45 minutes.
 - Users can add custom break intervals.
-- The timer has a neomorphic design which gives it a modern and unique look.
-- The timer uses Local Storage to save your settings and preferences.
+- The timer has a neomorphic design
+- Users are given a taskslist where they can add and edit tasks
 
 Frameworks and Languages Used
 This project was built using React.js and SASS. React.js is a popular JavaScript library that allows developers to build user interfaces efficiently. SASS is a CSS preprocessor that adds extra functionality to CSS, such as variables and mixins.
