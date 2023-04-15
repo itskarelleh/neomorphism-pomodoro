@@ -127,8 +127,8 @@ const TodoList = () => {
                 inputVal={taskInput} setInputVal={setTaskInput} />
             </div>
             <div className="tasks-container">
-            {tasksObj && tasksObj.map((task) => (
-                <ListItem task={task} tasks={tasksObj} setTasks={setTasks}/>
+            {tasksObj && tasksObj.map((task, index) => (
+                <ListItem key={index} task={task} tasks={tasksObj} setTasks={setTasks}/>
             ))}
             </div>
         </>

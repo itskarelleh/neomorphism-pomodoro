@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaUndoAlt, FaStop, FaPause, FaPlay } from 'react-icons/fa';
 import { FaMusic, FaTimes } from "react-icons/fa";
 import { soundOptions, sessionTimes } from "../../enums";
@@ -6,7 +6,7 @@ import Click from 'assets/click.mp3';
 import PopSound from 'assets/pop.mp3';
 import useSound from 'use-sound';
 import './inputs.scss';
-import { TimerContext } from 'context/TimerContext';
+import { PomodoroContext } from '../../context/PomodoroProvider';
 
 const Button = ({ label, icon, handleClick, children }) => {
  
@@ -19,7 +19,7 @@ const Button = ({ label, icon, handleClick, children }) => {
             handleClick();
         }}>
             <div>
-                {icon && icon}
+                {icon}
                 {label && <p>label</p>}
                 {children}
             </div>
@@ -43,26 +43,36 @@ const TimerButton = ({ handleChange: handleClick, label, icon, children }) => {
     )
 }
 
-const TimerRunningControls = ({ stop, play, running, reset }) => (
-    <div className="timer-controls">
-        <TimerButton handleChange={stop} label="Stop"><FaStop /></TimerButton>
-        <TimerButton handleChange={play} label="Pause">{running ? ( <FaPause /> ) : ( <FaPlay /> )}</TimerButton>
-        <TimerButton handleChange={reset} label="Reset"><FaUndoAlt /></TimerButton>
-    </div>
-);
+const TimerRunningControls = () => {
+    const { stopTimer, togglePausePlay, resetTimer, running  } = useContext(PomodoroContext);
 
-const InitialControls = ({ sessionType, start, reset }) => (
+    return (
     <div className="timer-controls">
-        <TimerButton handleChange={start}
-         label="Start"><FaPlay /></TimerButton> 
-        {sessionType === sessionTimes[1].type ? (
-            <TimerButton handleChange={reset} label="Reset"><FaUndoAlt /></TimerButton>
-        ): null}
+        <TimerButton handleChange={stopTimer} label="Stop"><FaStop /></TimerButton>
+        <TimerButton handleChange={togglePausePlay} label="Pause">{running ? ( <FaPause /> ) : ( <FaPlay /> )}</TimerButton>
+        <TimerButton handleChange={resetTimer} label="Reset"><FaUndoAlt /></TimerButton>
     </div>
-)
+    )
+};
+
+const InitialControls = () => {
+    const { sessionType, startTimer, resetTimer } = useContext(PomodoroContext);
+
+    return (
+        <div className="timer-controls">
+            <TimerButton handleChange={startTimer}
+            label="Start"><FaPlay /></TimerButton> 
+            {sessionType === sessionTimes[1].type ? (
+                <TimerButton handleChange={resetTimer} label="Reset"><FaUndoAlt /></TimerButton>
+            ): null}
+        </div>
+    )
+}
 
 const SoundOption = ({ option, ...props }) => {
     
+    const { running } = useContext(PomodoroContext);
+
     const [ play, { stop } ] = useSound(option.audio);
     const [ isActive, setIsActive ] = useState(false);
 
@@ -71,11 +81,7 @@ const SoundOption = ({ option, ...props }) => {
         if(isActive) play();
         if(!isActive) stop();
     }
-    return (
-        <TimerContext.Consumer>
-            <li onClick={toggleAudio} {...props}>{option.icon}{option.name}</li>
-        </TimerContext.Consumer>
-    )
+    return <li onClick={toggleAudio} {...props}>{option.icon}{option.name}</li>;
 }
 
 const SoundsList = () => {

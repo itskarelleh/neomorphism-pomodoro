@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TimerButton } from '../inputs';
 import { FaMinus, FaPlus } from "react-icons/fa";
 import "./timer.scss";
+import { PomodoroContext } from '../../context/PomodoroProvider';
 
 const doubleDigitFormatting = (num) => {
     return num > 9 ? num : `0${num}`;
@@ -15,39 +16,9 @@ const formatTime = (time) => {
     return `${minutes}:${seconds}`;
 }
                 
-const TimerDisplay = ({ time, setTime, sessionType }) => {
+const TimerDisplay = () => {
 
-    const increase = () => {
-        if(sessionType !== "Break") {
-            if(time === 60) {
-                return time;
-            } else {
-                setTime(time += 5);
-            }
-        } else {
-            if(time === 15) {
-                return time;
-            } else {
-                setTime(time += 5);
-            }
-        }
-    }
-
-    const decrease = () => {
-        if(sessionType !== "Break") {
-            if(time === 15) {
-                return time;
-            } else {
-                setTime(time -= 5);
-            }
-        } else {
-            if(time === 5) {
-                return time;
-            } else {
-                setTime(time -= 5);
-            }
-        } 
-    }
+    const { time, setTime, sessionType, increase, decrease, running } = useContext(PomodoroContext);
 
     const RunningDisplay = () => (
         <div className="timer-select inline-flex">
