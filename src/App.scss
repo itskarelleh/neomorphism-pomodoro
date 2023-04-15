@@ -5,7 +5,8 @@ h6 {
   margin: 0;
   font-weight: 500;
   font-size: 1.5rem;
-  color: map.get($theme-colors, "text");;
+  color: map.get($theme-colors, "primary");
+  @extend .raised-text;
 }
 
 .App {
@@ -118,7 +119,7 @@ h6 {
 }
 
 .timer-text {
-  color: map.get($theme-colors, "primary-dark");;
+  color: map.get($theme-colors, "primary");;
   display: inline;
   margin: 0;
   @extend .raised-text
@@ -159,16 +160,19 @@ h6 {
   @extend .raised;
   div {
     border-radius: inherit;
-    fill: map.get($theme-colors, "text");;
-    color: map.get($theme-colors, "text");;
+    fill: map.get($theme-colors, "primary");;
+    color: map.get($theme-colors, "primary");;
     display: flex;
     flex-flow: wrap;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    @extend .raised-text;
     svg {
       width: 20px;
       height: auto;
+        filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.4)) 
+        drop-shadow(-1px -1px 1px rgba(255, 255, 255, 1));
     }
   }
   &:active {

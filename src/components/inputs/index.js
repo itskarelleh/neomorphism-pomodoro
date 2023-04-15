@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaUndoAlt, FaStop, FaPause, FaPlay } from 'react-icons/fa';
 import { FaMusic, FaTimes } from "react-icons/fa";
 import { soundOptions, sessionTimes } from "../../enums";
@@ -10,12 +10,27 @@ import { PomodoroContext } from '../../context/PomodoroProvider';
 
 const Button = ({ label, icon, handleClick, children }) => {
  
-    const [ play ] = useSound(PopSound);
+    const { running } = useContext(PomodoroContext);
+
+    const [ play, exposedData ] = useSound(PopSound);
+
+
+    useEffect(() => {
+        if(running) {
+            play();
+        }
+
+        if(!running) {
+            exposedData.pause();
+        }
+    }, [])
+
+
 
     return ( 
     <>
         <button className="btn-small" onClick={() => {
-            play();
+            if(running) play();
             handleClick();
         }}>
             <div>
@@ -81,13 +96,14 @@ const SoundOption = ({ option, ...props }) => {
         if(isActive) play();
         if(!isActive) stop();
     }
+
     return <li onClick={toggleAudio} {...props}>{option.icon}{option.name}</li>;
 }
 
 const SoundsList = () => {
 
     return (
-        <ul className="sound-options">
+        <ul style={{ marginRight: "15px" }} className="sound-options">
             {soundOptions && soundOptions.map((option,index) => (
                 <SoundOption option={option} key={index} role="button"
                 id={`sound-${option.name}`} />

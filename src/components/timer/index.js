@@ -18,7 +18,7 @@ const formatTime = (time) => {
                 
 const TimerDisplay = () => {
 
-    const { time, setTime, sessionType, increase, decrease, running } = useContext(PomodoroContext);
+    const { time, sessionType, increase, decrease, running } = useContext(PomodoroContext);
 
     const RunningDisplay = () => (
         <div className="timer-select inline-flex">
