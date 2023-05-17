@@ -14,8 +14,9 @@ https://github.com/karellehofler/pomodoro/assets/23417952/e637c007-d12c-45d4-9bc
 
 One notable feature of the timer is its neomorphic design. Neumorphism is a design trend that creates a realistic, three-dimensional appearance by using light and shadow effects. This design choice enhances the visual appeal of the timer and provides a modern and sleek look.
 
-Frameworks and Languages Used
-This project was built using React.js and SASS. React.js is a popular JavaScript library that allows developers to build user interfaces efficiently. SASS is a CSS preprocessor that adds extra functionality to CSS, such as variables and mixins.
+## Stack
+- React.js
+- SCSS
 
 ## Optimizations
 
