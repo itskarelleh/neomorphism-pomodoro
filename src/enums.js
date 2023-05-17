@@ -4,7 +4,7 @@ import NatureSound from 'assets/nature.mp3';
 import OceanSound from 'assets/ocean.mp3'
 
 const soundOptions = [
-    { name: "Silent", icon: <FaVolumeMute />, audio: '' },
+    { name: "Silent", icon: <FaVolumeMute />, audio: null },
     { name: "Nature", icon: <FaTree />, audio: NatureSound },
     { name: "Fire", icon: <FaFire />, audio: FireSound },
     { name: "Ocean", icon: <FaWater />, audio: OceanSound }

@@ -11,7 +11,7 @@ import { PomodoroContext } from '../../context/PomodoroProvider';
 const Button = ({ label, icon, handleClick, children }) => {
  
     const { running } = useContext(PomodoroContext);
-
+    
     const [ play, exposedData ] = useSound(PopSound);
 
 
@@ -24,7 +24,6 @@ const Button = ({ label, icon, handleClick, children }) => {
             exposedData.pause();
         }
     }, [])
-
 
 
     return ( 
@@ -46,6 +45,7 @@ const Button = ({ label, icon, handleClick, children }) => {
 const TimerButton = ({ handleChange: handleClick, label, icon, children }) => {
     
     const [ play ] = useSound(PopSound);
+
     return (
         <button onClick={() => { handleClick(); play(); }} 
         className="timer-btn">
@@ -59,18 +59,20 @@ const TimerButton = ({ handleChange: handleClick, label, icon, children }) => {
 }
 
 const TimerRunningControls = () => {
+    
     const { stopTimer, togglePausePlay, resetTimer, running  } = useContext(PomodoroContext);
 
     return (
-    <div className="timer-controls">
-        <TimerButton handleChange={stopTimer} label="Stop"><FaStop /></TimerButton>
-        <TimerButton handleChange={togglePausePlay} label="Pause">{running ? ( <FaPause /> ) : ( <FaPlay /> )}</TimerButton>
-        <TimerButton handleChange={resetTimer} label="Reset"><FaUndoAlt /></TimerButton>
-    </div>
+        <div className="timer-controls">
+            <TimerButton handleChange={stopTimer} label="Stop"><FaStop /></TimerButton>
+            <TimerButton handleChange={togglePausePlay} label="Pause">{running ? ( <FaPause /> ) : ( <FaPlay /> )}</TimerButton>
+            <TimerButton handleChange={resetTimer} label="Reset"><FaUndoAlt /></TimerButton>
+        </div>
     )
 };
 
 const InitialControls = () => {
+    
     const { sessionType, startTimer, resetTimer } = useContext(PomodoroContext);
 
     return (
@@ -84,18 +86,25 @@ const InitialControls = () => {
     )
 }
 
-const SoundOption = ({ option, ...props }) => {
+const SoundOption = ({ option, resetTimer, ...props }) => {
     
     const { running } = useContext(PomodoroContext);
 
     const [ play, { stop } ] = useSound(option.audio);
     const [ isActive, setIsActive ] = useState(false);
 
+
     const toggleAudio = () => {
         setIsActive(!isActive);
         if(isActive) play();
         if(!isActive) stop();
     }
+
+    useEffect(() =>{
+        if(running) play();
+        else stop();
+    },[running, play, stop])
+
 
     return <li onClick={toggleAudio} {...props}>{option.icon}{option.name}</li>;
 }
