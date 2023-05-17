@@ -5,8 +5,7 @@ This project is a timer that uses the Pomodoro Technique, a time management meth
 https://github.com/karellehofler/pomodoro/assets/23417952/e637c007-d12c-45d4-9bcc-d4abd1806c8e
 
 ## Features
-- Users can set a timer for work sessions from 15 to 45 minutes.
-- Users can add custom break intervals.
+- Users can set a timer for work sessions from 15 to 60 minutes.
 - The timer has a neomorphic design
 - Users are given a taskslist where they can add and edit tasks
 
