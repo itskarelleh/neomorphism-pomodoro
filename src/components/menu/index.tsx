@@ -32,7 +32,7 @@ const MenuButton = ({ icon, children }) => {
     )
 }
 
-const Menu = ({ tasks }) => {
+const Menu = ({ tasks } :  { tasks: any }) => {
 
     return (
         <header id="header" className="flex-space">

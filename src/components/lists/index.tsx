@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
+import React, {SetStateAction, useState} from 'react';
 import { CheckBox } from '../inputs';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FaPen, FaTrash } from 'react-icons/fa';
 import { presetListItems } from '../../enums';
-import useLocalStorage from 'hooks/useLocalStorage';
+import { useLocalStorage } from '../../hooks/useLocalStorage.tsx';
 import useSound from 'use-sound';
-import Pop from 'assets/pop.mp3';
+import Pop from '../../assets/pop.mp3';
 import { v4 as uuidv4 } from 'uuid';
 import './lists.scss';
+import {Task} from "../../types.ts";
 import Popup from '../popup';
 
-const updateTasks = (val, tasks, setTasks) => {
-    var newTasks = tasks;
+const updateTasks = (val : Task, tasks: Task[], setTasks: SetStateAction<unknown>) => {
+    const newTasks = tasks;
     newTasks.push(val);
 
     setTasks(JSON.stringify(newTasks));
 }
 
-const AddATask = ({ tasks, setTasks, inputVal, setInputVal }) => {
+const AddATask = ({ tasks, setTasks, inputVal, setInputVal } : {
+    tasks: Task[],
+    setTasks: SetStateAction<never>,
+    inputVal: unknown,
+    setInputVal: unknown
+}) => {
     
     const [ play ] = useSound(Pop);
     
@@ -26,7 +33,7 @@ const AddATask = ({ tasks, setTasks, inputVal, setInputVal }) => {
         } else {
             e.preventDefault();
 
-            var newTask = {
+            const newTask = {
                 id: uuidv4(val),
                 createdAt: Date.now(),
                 label: val,
@@ -117,7 +124,7 @@ const TodoList = () => {
     const [ tasks, setTasks ] = useLocalStorage("tasks", JSON.stringify(presetListItems));
     const [ taskInput, setTaskInput ] = useState("");
 
-    let tasksObj = JSON.parse(tasks);
+    const tasksObj : any[] = JSON.parse(tasks);
 
     return (
         <>
@@ -127,7 +134,7 @@ const TodoList = () => {
                 inputVal={taskInput} setInputVal={setTaskInput} />
             </div>
             <div className="tasks-container">
-            {tasksObj && tasksObj.map((task, index) => (
+            {tasksObj && tasksObj.map((task: any, index: number) => (
                 <ListItem key={index} task={task} tasks={tasksObj} setTasks={setTasks}/>
             ))}
             </div>
