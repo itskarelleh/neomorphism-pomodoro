@@ -9,38 +9,29 @@ import './inputs.scss';
 import { PomodoroContext } from '../../context/PomodoroProvider';
 
 const Button = ({ label, icon, handleClick, children }) => {
- 
+
     const { running } = useContext(PomodoroContext);
-    
-    const [ play, exposedData ] = useSound(PopSound);
 
+    const [play] = useSound(PopSound);
 
-    useEffect(() => {
-        if(running) {
-            play();
-        }
-
-        if(!running) {
-            exposedData.pause();
-        }
-    }, [])
-
-
-    return ( 
-    <>
-        <button className="btn-small" onClick={() => {
-            if(running) play();
-            handleClick();
-        }}>
-            <div>
-                {icon}
-                {label && <p>label</p>}
-                {children}
-            </div>
-        </button>
-    </>
+    return (
+        <>
+            <button className="btn-small" onClick={() => {
+                handleClick();
+                if (running) {
+                    play();
+                }
+            }}>
+                <div>
+                    {icon}
+                    {label && <p>{label}</p>}
+                    {children}
+                </div>
+            </button>
+        </>
     )
 }
+
 
 const TimerButton = ({ handleChange: handleClick, label, icon, children }) => {
     

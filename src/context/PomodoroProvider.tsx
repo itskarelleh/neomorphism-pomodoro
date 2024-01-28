@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { sessionTimes } from '../enums';
 
-
 type PomodoroContext = {
     timerInterval: unknown,
     running: boolean,
     time: number,
     sessionType: string | null
 }
-const PomodoroContext = React.createContext({});
+
+const PomodoroContext = React.createContext<PomodoroContext>({
+    timerInterval: null,
+    running: false,
+    time: sessionTimes[0].default,
+    sessionType: null
+});
 
 function PomodoroProvider({ children } : { children: React.ReactNode }) {
     const [ timerInterval, setTimerInterval ] = useState<unknown | null>(null);

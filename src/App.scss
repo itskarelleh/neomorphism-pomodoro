@@ -1,6 +1,13 @@
 @use "sass:map";
 @import "utils/variables";
 
+html {
+  font-family: 'Rubik';
+}
+
+body {
+  margin: 0;
+}
 h6 {
   margin: 0;
   font-weight: 500;
