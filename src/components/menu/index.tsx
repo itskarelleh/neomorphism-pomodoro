@@ -3,6 +3,7 @@ import { Button } from '../inputs';
 import { FaTasks, FaTimes } from 'react-icons/fa';
 import { TodoList } from '../lists';
 import "./menu.scss";
+import AuthenticationAndRegisterationFooter from '../Login/AuthenticationAndRegistrationFooter';
 
 const MenuContainer = ({ handleClick, children }) => (
     <div id="menu">
@@ -41,6 +42,9 @@ const Menu = ({ tasks } :  { tasks: any }) => {
                 <MenuButton icon={<FaTasks />}>
                     <TodoList listItems={tasks} />
                 </MenuButton>
+            </div>
+            <div>
+                <AuthenticationAndRegisterationFooter />
             </div>
         </header>
     )
